@@ -40,7 +40,7 @@ int add(int x, int y) {
 int subtract(int x, int y) {
     //Check to make sure y is possitive, if not, send to addition
     if (y < 0) {
-        return addition(x,y);
+        return add(x,y);
     }
     //Since y is possitive the subtraction will take place
     int result = x - y;

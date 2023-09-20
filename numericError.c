@@ -91,23 +91,28 @@ int main() {
     int x = 5;
     int y = 15;
     printf("\nPassing test, 5 + 15 = %i", add(x,y));
+        
+    //Addition w/ negative number - Should reroute to subtract
+    int e = 10;
+    int f = -2; 
+    printf("\nPassing test, 10 + (-2) = %i", add(e,f));
 
     //Addition w/ positives - Should have overflow
     int a = 2147483646;
     int b = 10; 
     printf("\nFailing test, 2147483646 + 10 != %i", add(a,b));
 
-    //Addition w/ positives - Should have overflow
+    //Addition w/ positives large numbers - Should have overflow
     int c = 147483646;
     int d = 2000000002; 
     printf("\nFailing test, 147483646 + 2000000002 != %i", add(c,d));
 
-    //Addition w/ negative number - Should reroute to subtract
-    int e = 10;
-    int f = -2; 
-    printf("\nPassing test, 10 + (-2) != %i", add(e,f));
-
     printf("\n-----------------------------------------\n");
 
     /************************************************/
+
+    //Subtract w/ positive & positive - should pass
+    int g = 5;
+    int h = 15;
+    printf("\nPassing test, 5 - 15 = %i", add(g,h));
 }

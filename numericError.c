@@ -30,7 +30,7 @@
 *                   4. x does not equal the result divided by y. 
 *       d. For division: 
 *               Overflow use cases:
-*                   1.The only over flow to check of is if x == MIN_Int and y == -1, the result would be MAX_INT+1
+*                   1. The only over flow to check of is if x == MIN_Int and y == -1, the result would be MAX_INT+1
 */
 
 #include <stdio.h>
@@ -238,8 +238,8 @@ int main() {
     printf("\n\n-------------------Divide----------------------");
 
     //Divide with small numbers - should pass
-    int e = 5;
-    int f = 15;
+    int e = 15;
+    int f = 5;
     printf("\n%i / %i = %i", e, f, divide(e,f));
 
     //Divide with use case numbers - should fail 

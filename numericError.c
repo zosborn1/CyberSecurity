@@ -10,7 +10,7 @@
 *       - For subtraction: 
 *           x - y < -4294967297 => buffer overflow
 */
-int UpperOverFlow = 4294967296;
+int UpperOverFlow = 4294967295;
 
 int add(int x, int y) {
     if ((x < UpperOverFlow) && (y < (UpperOverFlow - x))) {

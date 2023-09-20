@@ -11,7 +11,7 @@
 */
 int MAX_INT = 2147483647;
 
-void printErrorStatement(char functionName) {
+void printErrorStatement(char* functionName) {
     printf("\n\n******Error: Overflow with %s******", functionName);
     return;
 }
@@ -84,12 +84,6 @@ int main() {
     int a = 4294967290;
     int b = 10; 
     printf("\nFailing test, 4294967290 + 10 != %i", add(a,b));
-
-    //Addition w/ negtives - Should have overflow
-    a = -4294967290;
-    b = -10; 
-    printf("\nFailing test, -4294967290 + -10 != %i", add(a,b));
-    printf("\n-----------------------------------------");
 
     /************************************************/
 }

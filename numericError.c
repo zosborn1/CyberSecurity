@@ -115,6 +115,11 @@ int main() {
     int g = 5;
     int h = 15;
     printf("\nPassing test, 5 - 15 = %i", subtract(g,h));
+    
+    //Subtract w/ positive & negative - Should reroute to add
+    int g = 5;
+    int h = 15;
+    printf("\nPassing test, 5 - (-15) = %i", subtract(g,h));
 
     printf("\n-----------------------------------------\n");
 

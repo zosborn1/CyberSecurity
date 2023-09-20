@@ -180,12 +180,12 @@ int main() {
     b = 0;
     a = 10;
     b = 10; 
-    printf("\n%i + %i = %i", x, y, subtract(a,b));
+    printf("\n%i + %i = %i", a, b, subtract(a,b));
 
     //Tests negative overflow - should fail 
     a = 0;
     b = 0;
-    a = -2147483647;
+    a = -2147483648;
     b = 15;
     printf("\n%i - %i = %i", a, b, subtract(a,b));
 
@@ -240,14 +240,14 @@ int main() {
     //Divide with small numbers - should pass
     int e = 5;
     int f = 15;
-    printf("\n%i * %i = %i", i, j, divide(e,f));
+    printf("\n%i * %i = %i", e, f, divide(e,f));
 
     //Divide with use case numbers - should fail 
     e = 0;
     f = 0;
     e = MIN_INT;
     f = -1;
-    printf("\n%i * %i = %i", i, j, divide(e,f));
+    printf("\n%i * %i = %i", e, f, divide(e,f));
 
     printf("\n-----------------------------------------\n");
 

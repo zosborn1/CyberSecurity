@@ -17,7 +17,7 @@ int add(int x, int y) {
         return x + y;
     }
     else {
-        printf("Error: Overflow with Add()");
+        printf("Error: Overflow with Add()\n");
         return -1;
     }
 }
@@ -26,10 +26,10 @@ int main() {
     //Addition - should pass 
     int x = 5;
     int y = 15;
-    printf("1st addition test: %i", add(x,y));
+    printf("\n1st addition test: %i", add(x,y));
 
     //Addition - Should have overflow, testing large x value
     int a = 4294967290;
     int b = 10; 
-    printf("2nd addition test: %i", add(a,b));
+    printf("\n2nd addition test: %i", add(a,b));
 }

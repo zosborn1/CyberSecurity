@@ -15,7 +15,7 @@ int UpperOverFlow = 4294967295;
 int add(int x, int y) {
     int result = x + y;
     if ((result < x) || (result < y)) {
-        printf("\nError: Overflow with addition");
+        printf("\n******Error: Overflow with addition******");
         return -1;
     }
     return result;
@@ -38,4 +38,5 @@ int main() {
     int a = 4294967290;
     int b = 10; 
     printf("\n2nd addition test: %i", add(a,b));
+    printf("\n");
 }

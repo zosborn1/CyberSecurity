@@ -208,13 +208,6 @@ int main() {
     i = -1073741824;
     j = -2;
     printf("\n%i * %i = %i", i, j, multiply(i,j));
-
-    //Subtract w/ negative large and positive small - Should pass
-    i = 0;
-    j = 0;
-    i = 500;
-    j = -47000;
-    printf("\n%i * %i = %i", i, j, multiply(i,j));
     
     //Subtract w/ positive larger numbers - Should have overflow
     i = 0;

@@ -185,7 +185,7 @@ int main() {
     //Tests negative overflow - should fail 
     a = 0;
     b = 0;
-    a = -2147483648;
+    a = -2147483647;
     b = 15;
     printf("\n%i - %i = %i", a, b, subtract(a,b));
 

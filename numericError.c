@@ -13,13 +13,14 @@
 int UpperOverFlow = 4294967295;
 
 int add(int x, int y) {
-    if ((x < UpperOverFlow) && (y < (UpperOverFlow - x))) {
-        return x + y;
-    }
-    else {
-        printf("Error: Overflow with Add()\n");
-        return -1;
-    }
+    return x+y;
+    // if ((x < UpperOverFlow) && (y < (UpperOverFlow - x))) {
+    //     return x + y;
+    // }
+    // else {
+    //     printf("\nError: Overflow with Add()");
+    //     return -1;
+    // }
 }
 
 int main() {

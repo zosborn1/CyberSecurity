@@ -127,7 +127,7 @@ int main() {
     b = 0;
     a = 5;
     b = 15;
-    printf("\nPassing test, 5 - (-15) = %i", subtract(g,h));
+    printf("\nPassing test, 5 - (-15) = %i", subtract(a,b));
 
     printf("\n-----------------------------------------\n");
 

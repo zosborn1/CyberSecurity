@@ -5,15 +5,20 @@
 *  Can happen during calculation errors. Since the Integers we are using are 32-bits, overflow happens when 
 *   our Integer gets larger then (2^32)+1 [4294967297] or -(2^32)-1 [-4294967297]. 
 *       - For addition: 
-*           x + y > 4294967297 => buffer overflow 
-*               so if 4294967297 - x > y => no buffer overflow. 
+*           x + y > 4294967290 => buffer overflow 
+*               so if 4294967290 - x > y => no buffer overflow. 
 *       - For subtraction: 
 *           x - y < -4294967297 => buffer overflow
 */
 int UpperOverFlow = 4294967295;
 
 int add(int x, int y) {
-    return x+y;
+    int result = x + y;
+    if ((result < x) || (result < y)) {
+        printf("\nError: Overflow with addition");
+        return -1;
+    }
+    return result;
     // if ((x < UpperOverFlow) && (y < (UpperOverFlow - x))) {
     //     return x + y;
     // }

@@ -54,7 +54,7 @@ int subtract(int x, int y) {
     //Since y is possitive the subtraction will take place
     int result = x - y;
     //Throw error 
-    if ((result + x != y) || (result == 0)) {
+    if ((result + y != x) || (result == 0)) {
         char str[] = "Subtraction";
         printErrorStatement(str);
         return -1;
@@ -105,7 +105,7 @@ int main() {
     //Addition w/ negative number - Should reroute to subtract
     int e = 10;
     int f = -2; 
-    printf("\nFailing test, 147483646 + 2000000002 != %i", add(e,f));
+    printf("\nPassing test, 10 + (-2) != %i", add(e,f));
 
     printf("\n-----------------------------------------\n");
 

@@ -34,11 +34,11 @@ int add(int x, int y) {
         return subtract(x, y);
     }
     //Check to see if the number are to large for the check below. 
-    if (x > MAX_INT - y || y > MAX_INT - x) {
-        char str[] = "Addition, both numbers are too large";
-        printErrorStatement(str);
-        return -1;
-    }
+    // if (x > MAX_INT - y || y > MAX_INT - x) {
+    //     char str[] = "Addition, both numbers are too large";
+    //     printErrorStatement(str);
+    //     return -1;
+    // }
     //Since y is positive the addition will take place
     int result = x + y;
     //Throw error when result is less then the inputs. 

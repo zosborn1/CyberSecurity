@@ -240,14 +240,14 @@ int main() {
     //Divide with small numbers - should pass
     int e = 5;
     int f = 15;
-    printf("\n%i * %i = %i", e, f, divide(e,f));
+    printf("\n%i / %i = %i", e, f, divide(e,f));
 
     //Divide with use case numbers - should fail 
     e = 0;
     f = 0;
     e = MIN_INT;
     f = -1;
-    printf("\n%i * %i = %i", e, f, divide(e,f));
+    printf("\n%i / %i = %i", e, f, divide(e,f));
 
     printf("\n-----------------------------------------\n");
 

@@ -5,9 +5,13 @@
 *  Can happen during calculation errors. Since the Integers we are using are 32-bits signed integer, overflow happens when 
 *   our Integer gets larger then 2,147,483,647 or smaller then -2,147,483,648. 
 *       - For addition: 
-*             
+*             Checking for overflow can come from making sure:
+*                   - the result isnt 0
+*                   - the result is larger then one input. 
 *       - For subtraction: 
-*           x - y < -2,147,483,647 => buffer overflow
+*             Checking for overflow can come from making sure:
+*                   - the result isnt 0
+*                   - result is not larger then the first input
 */
 
 /*Constents, headers for functions, and helper functions.*/
@@ -36,7 +40,7 @@ int add(int x, int y) {
     //Since y is positive the addition will take place
     int result = x + y;
     //Throw error when result is less then the inputs. 
-    if ((result < x) || (result < y) || (result - x != y) || (result == 0)) {
+    if ((result < x) || (result == 0)) {
         char str[] = "Addition, one number is too large";
         printErrorStatement(str);
         return -1;
@@ -54,9 +58,8 @@ int subtract(int x, int y) {
 
     //Since y is possitive the subtraction will take place
     int result = x - y;
-    printf("\n%i and %i\n", (result), x);
     //Throw error 
-    if ((result + y != x) || (result == 0)) {
+    if ((result > x) || (result == 0)) {
         char str[] = "Subtraction";
         printErrorStatement(str);
         return -1;

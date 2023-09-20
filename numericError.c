@@ -133,7 +133,7 @@ int main() {
     //Subtract w/ large negative - Should have overflow
     a = 0;
     b = 0;
-    a = -3147483646;
+    a = -2147483648;
     b = 15;
     printf("\n%i - %i = %i", a, b, subtract(a,b));
 

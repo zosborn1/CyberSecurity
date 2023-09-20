@@ -13,7 +13,7 @@ int UpperOverFlow = 4294967295;
 
 int add(int x, int y) {
     int result = x + y;
-    if ((x > 0 && y > 0 && result < 0) || (x < 0 && y < 0 && result > 0)) {
+    if (x > UpperOverFlow - y) {
         printf("\n\n******Error: Overflow with addition******");
         return -1;
     }

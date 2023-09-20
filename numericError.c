@@ -114,5 +114,10 @@ int main() {
     //Subtract w/ positive & positive - should pass
     int g = 5;
     int h = 15;
-    printf("\nPassing test, 5 - 15 = %i", add(g,h));
+    printf("\nPassing test, 5 - 15 = %i", subtract(g,h));
+
+    printf("\n-----------------------------------------\n");
+
+     /************************************************/
+
 }

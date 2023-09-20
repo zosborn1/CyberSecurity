@@ -14,10 +14,12 @@
 *             Checking for overflow can come from making sure:
 *                   - the result isnt 0, when x != (-y)
 *                   - result is not larger then the first input, unless one input is negative.
+*
+*       * FOR BOTH ADDITION AND SUBTRACTION, I shift to the other function if y was negative. 
+*
 *       - For Multiplication: 
 *             Checking for overflow can come from making sure:
 *                   - The inputs do not equal 0
-*                   - the reverce of the multiplication cant happen
 *                   - if both are positive number => result will be positive 
 *                   - if one is a negative number => result will be negative
 *       - For division: 

@@ -116,18 +116,18 @@ int multiply(int x, int y) {
 *   @return result, if no integer overflow, else return Error statement and -1
 */
 int divide(int x, int y) {
-    int result = x/y;
-    if (y == 0) {
-        char str[] = "Divide";
-        printErrorStatement(str);
-        return -1;
-    }
     //Only use case for division
     if (x == MIN_INT && y == -1) { // Checks for d.1 from above
         char str[] = "Division";
         printErrorStatement(str);
         return -1;
     }
+    else if (y == 0) {
+        char str[] = "Divide";
+        printErrorStatement(str);
+        return -1;
+    }
+    int result = x/y;
     return result;
 }
 

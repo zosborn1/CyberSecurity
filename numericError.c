@@ -96,6 +96,13 @@ int main() {
     int x = 5;
     int y = 15;
     printf("\n%i + %i = %i", x, y, add(x,y));
+
+    //Addition that comes to 0 - Should not overflow
+    x = 0;
+    y = 0;
+    x = -10;
+    y = 10; 
+    printf("\n%i + %i = %i", x, y, add(x,y));
         
     //Addition w/ negative number - Should reroute to subtract
     x = 0;
@@ -116,13 +123,6 @@ int main() {
     y = 0;
     x = 147483646;
     y = 2000000002; 
-    printf("\n%i + %i = %i", x, y, add(x,y));
-
-    //Addition that comes to 0 - Should not overflow
-    x = 0;
-    y = 0;
-    x = -10;
-    y = 10; 
     printf("\n%i + %i = %i", x, y, add(x,y));
 
     //Addition that comes to 0 - Should have overflow

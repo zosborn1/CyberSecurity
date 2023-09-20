@@ -9,12 +9,24 @@
 *       - For subtraction: 
 *           x - y < -2,147,483,647 => buffer overflow
 */
+
+/*Constents, headers for functions, and helper functions.*/
 int MAX_INT = 2147483647;
 
+//So functions can use eachother
+int add(int x, int y);
+int subtract(int x, int y);
+int multiply(int x, int y);
+int divide(int x, int y);
+
+//make printing errors easier
 void printErrorStatement(char* functionName) {
     printf("\n\n******Error: Overflow with %s******", functionName);
     return;
 }
+/**************************************/
+
+
 
 int add(int x, int y) {
     //Check to make sure y is possitive, if not, send to subtract

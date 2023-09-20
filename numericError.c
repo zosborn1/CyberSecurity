@@ -40,7 +40,7 @@ int add(int x, int y) {
     //Since y is positive the addition will take place
     int result = x + y;
     //Throw error when result is less then the inputs. 
-    if ((result < x) || (result == 0)) {
+    if ((result < x) || (result == 0 && (x != (-y)))) {
         char str[] = "Addition, one number is too large";
         printErrorStatement(str);
         return -1;
@@ -95,28 +95,42 @@ int main() {
     //Addition w/ positives - Should pass 
     int x = 5;
     int y = 15;
-    printf("\n%i - %i = %i", x, y, add(x,y));
+    printf("\n%i + %i = %i", x, y, add(x,y));
         
     //Addition w/ negative number - Should reroute to subtract
     x = 0;
     y = 0;
     x = 10;
     y = -2; 
-    printf("\n%i - %i = %i", x, y, add(x,y));
+    printf("\n%i + %i = %i", x, y, add(x,y));
 
     //Addition w/ positives - Should have overflow
     x = 0;
     y = 0;
     x = 2147483646;
     y = 10; 
-    printf("\n%i - %i = %i", x, y, add(x,y));
+    printf("\n%i + %i = %i", x, y, add(x,y));
 
     //Addition w/ positives large numbers - Should have overflow
     x = 0;
     y = 0;
     x = 147483646;
     y = 2000000002; 
-    printf("\n%i - %i = %i", x, y, add(x,y));
+    printf("\n%i + %i = %i", x, y, add(x,y));
+
+    //Addition that comes to 0 - Should not overflow
+    x = 0;
+    y = 0;
+    x = -10;
+    y = 10; 
+    printf("\n%i + %i = %i", x, y, add(x,y));
+
+    //Addition that comes to 0 - Should have overflow
+    x = 0;
+    y = 0;
+    x = 2147483646;
+    y = 1; 
+    printf("\n%i + %i = %i", x, y, add(x,y));
 
     printf("\n-----------------------------------------\n");
 

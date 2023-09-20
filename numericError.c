@@ -29,7 +29,7 @@ int main() {
     printf("1st addition test: ", add(x,y));
 
     //Addition - Should have overflow, testing large x value
-    int x = 4294967290;
-    int y = 10; 
-    printf("2nd addition test: ", add(x,y));
+    int a = 4294967290;
+    int b = 10; 
+    printf("2nd addition test: ", add(a,b));
 }

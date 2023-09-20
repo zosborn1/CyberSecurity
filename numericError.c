@@ -126,7 +126,7 @@ int main() {
     a = 0;
     b = 0;
     a = 5;
-    b = 15;
+    b = -15;
     printf("\nPassing test, 5 - (-15) = %i", subtract(a,b));
 
     printf("\n-----------------------------------------\n");

@@ -1,6 +1,8 @@
-#include <stdio.h>
-
 /*
+*       Name: Zachary Osborn 
+*       Student ID: 9083623414
+*
+*
 *  General overflow. 
 *  Can happen during calculation errors. Since the Integers we are using are 32-bits signed integer, overflow happens when 
 *   our Integer gets larger then 2,147,483,647 or smaller then -2,147,483,648. 
@@ -21,6 +23,8 @@
 *       - For division: 
 *             Since the numbers are intergers and not floats, there will be no overflows. Only check would be that y is not 0. 
 */
+
+#include <stdio.h>
 
 /******Constents, headers for functions, and helper functions.******/
 int MAX_INT = 2147483647;
@@ -99,11 +103,6 @@ int divide(int x, int y) {
         char str[] = "Divide";
         printErrorStatement(str);
         return -1;
-    }
-    //Check to make sure y is not a decimal, with decimals the end result could overflow
-    if (y < 1 && y > 0) {
-        y = 1/y;
-        return multiply(x,y);
     }
     return result;
 }
@@ -189,17 +188,17 @@ int main() {
     int j = 15;
     printf("\n%i * %i = %i", i, j, multiply(i,j));
     
+    //Subtract w/ positive large and negative small - Should  pass
+    i = 0;
+    j = 0;
+    i = -500;
+    j = 47000;
+    printf("\n%i * %i = %i", i, j, multiply(i,j));
+    
     //Subtract w/ positive larger numbers - Should have overflow
     i = 0;
     j = 0;
     i = 47000;
-    j = 47000;
-    printf("\n%i * %i = %i", i, j, multiply(i,j));
-
-    //Subtract w/ positive larger numbers - Should have overflow
-    i = 0;
-    j = 0;
-    i = -500;
     j = 47000;
     printf("\n%i * %i = %i", i, j, multiply(i,j));
 

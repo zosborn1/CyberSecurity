@@ -26,23 +26,16 @@ void printErrorStatement(char* functionName) {
 }
 /**************************************/
 
-
-
 int add(int x, int y) {
     //Check to make sure y is possitive, if not, send to subtract
     if (y < 0) {
-        return subtract(x, y);
+        printf("\n\n******Add reroute: second value was negative, going to subtract() ******");
+        return subtract(x, -y);
     }
-    //Check to see if the number are to large for the check below. 
-    // if (x > MAX_INT - y || y > MAX_INT - x) {
-    //     char str[] = "Addition, both numbers are too large";
-    //     printErrorStatement(str);
-    //     return -1;
-    // }
     //Since y is positive the addition will take place
     int result = x + y;
     //Throw error when result is less then the inputs. 
-    if ((result < x) || (result < y) || (result - x != y) || (result - y != x)) {
+    if ((result < x) || (result < y) || (result - x != y) || (result == 0)) {
         char str[] = "Addition, one number is too large";
         printErrorStatement(str);
         return -1;
@@ -53,12 +46,13 @@ int add(int x, int y) {
 int subtract(int x, int y) {
     //Check to make sure y is possitive, if not, send to addition
     if (y < 0) {
-        return add(x,y);
+        printf("\n\n******Subtract reroute: second value was negative, going to add() ******");
+        return add(x,-y);
     }
     //Since y is possitive the subtraction will take place
     int result = x - y;
     //Throw error 
-    if ((result > x) || (result < -4294967296)) {
+    if ((result + x != y) || (result == 0)) {
         char str[] = "Subtraction";
         printErrorStatement(str);
         return -1;
@@ -105,6 +99,11 @@ int main() {
     int c = 147483646;
     int d = 2000000002; 
     printf("\nFailing test, 147483646 + 2000000002 != %i", add(c,d));
+
+    //Addition w/ negative number - Should reroute to subtract
+    int e = 10;
+    int f = -2; 
+    printf("\nFailing test, 147483646 + 2000000002 != %i", add(e,f));
 
     printf("\n-----------------------------------------\n");
 

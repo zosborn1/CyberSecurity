@@ -30,7 +30,8 @@ int add(int x, int y) {
     //Check to make sure y is possitive, if not, send to subtract
     if (y < 0) {
         printf("\n\n******Add reroute: second value was negative, going to subtract() ******");
-        return subtract(x, -y);
+        y = y * -1;
+        return subtract(x, y);
     }
     //Since y is positive the addition will take place
     int result = x + y;
@@ -47,7 +48,8 @@ int subtract(int x, int y) {
     //Check to make sure y is possitive, if not, send to addition
     if (y < 0) {
         printf("\n\n******Subtract reroute: second value was negative, going to add() ******");
-        return add(x,-y);
+        y = y * -1;
+        return add(x,y);
     }
     //Since y is possitive the subtraction will take place
     int result = x - y;

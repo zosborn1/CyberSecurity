@@ -51,9 +51,10 @@ int subtract(int x, int y) {
         y = y * -1;
         return add(x,y);
     }
+
     //Since y is possitive the subtraction will take place
     int result = x - y;
-    printf("\n%i and %i\n", (result + y), x);
+    printf("\n%i and %i\n", (result), x);
     //Throw error 
     if ((result + y != x) || (result == 0)) {
         char str[] = "Subtraction";

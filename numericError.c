@@ -102,9 +102,9 @@ int main() {
     printf("\nFailing test, 2147483646 + 10 != %i", add(a,b));
 
     //Addition w/ positives - Should have overflow
-    int a = 147483646;
-    int b = 2000000000; 
-    printf("\nFailing test, 147483646 + 2000000000 != %i", add(a,b));
+    int c = 147483646;
+    int d = 2000000000; 
+    printf("\nFailing test, 147483646 + 2000000000 != %i", add(c,d));
 
     printf("\n-----------------------------------------\n");
 

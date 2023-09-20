@@ -10,3 +10,26 @@
 *       - For subtraction: 
 *           x - y < -4294967297 => buffer overflow
 */
+int UpperOverFlow = 4294967296;
+
+int add(int x, int y) {
+    if ((x < UpperOverFlow) && (y < (UpperOverFlow - x))) {
+        return x + y;
+    }
+    else {
+        printf("Error: Overflow with Add()");
+        return -1;
+    }
+}
+
+int main() {
+    //Addition - should pass 
+    int x = 5;
+    int y = 15;
+    printf("1st addition test: ", add(x,y));
+
+    //Addition - Should have overflow, testing large x value
+    int x = 4294967290;
+    int y = 10; 
+    printf("2nd addition test: ", add(x,y));
+}

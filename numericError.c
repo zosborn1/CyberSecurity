@@ -93,32 +93,40 @@ int main() {
     printf("\nPassing test, 5 + 15 = %i", add(x,y));
         
     //Addition w/ negative number - Should reroute to subtract
-    int e = 10;
-    int f = -2; 
-    printf("\nPassing test, 10 + (-2) = %i", add(e,f));
+    x = 0;
+    y = 0;
+    x = 10;
+    y = -2; 
+    printf("\nPassing test, 10 + (-2) = %i", add(x,y));
 
     //Addition w/ positives - Should have overflow
-    int a = 2147483646;
-    int b = 10; 
-    printf("\nFailing test, 2147483646 + 10 != %i", add(a,b));
+    x = 0;
+    y = 0;
+    x = 2147483646;
+    y = 10; 
+    printf("\nFailing test, 2147483646 + 10 != %i", add(x,y));
 
     //Addition w/ positives large numbers - Should have overflow
-    int c = 147483646;
-    int d = 2000000002; 
-    printf("\nFailing test, 147483646 + 2000000002 != %i", add(c,d));
+    x = 0;
+    y = 0;
+    x = 147483646;
+    y = 2000000002; 
+    printf("\nFailing test, 147483646 + 2000000002 != %i", add(x,y));
 
     printf("\n-----------------------------------------\n");
 
     /************************************************/
 
     //Subtract w/ positive & positive - should pass
-    int g = 5;
-    int h = 15;
-    printf("\nPassing test, 5 - 15 = %i", subtract(g,h));
+    int a = 5;
+    int b = 15;
+    printf("\nPassing test, 5 - 15 = %i", subtract(a,b));
     
     //Subtract w/ positive & negative - Should reroute to add
-    int g = 5;
-    int h = 15;
+    a = 0;
+    b = 0;
+    a = 5;
+    b = 15;
     printf("\nPassing test, 5 - (-15) = %i", subtract(g,h));
 
     printf("\n-----------------------------------------\n");

@@ -128,7 +128,7 @@ int main() {
     //Addition that comes to 0 - Should have overflow
     x = 0;
     y = 0;
-    x = 2147483646;
+    x = 2147483647;
     y = 1; 
     printf("\n%i + %i = %i", x, y, add(x,y));
 

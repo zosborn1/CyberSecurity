@@ -5,37 +5,39 @@
 *
 *  General overflow. 
 *  Can happen during calculation errors. Since the Integers we are using are 32-bits signed integer, overflow happens when 
-*   our Integer gets larger then 2,147,483,647 or smaller then -2,147,483,648. 
-*       - For addition: 
-*             Checking for overflow can come from making sure:
-*                   - the result isnt 0, when x != (-y)
-*                   - the result is larger then one input. 
-*       - For subtraction: 
-*             Checking for overflow can come from making sure:
-*                   - the result isnt 0, when x != (-y)
-*                   - result is not larger then the first input, unless one input is negative.
+*   our Integer gets larger then 2,147,483,647 (MAX_INT) or smaller then -2,147,483,648 (MIN_INT).
+* 
+*       a. For addition: 
+*             Overflow use cases:
+*                   1. the result is 0, when x != (-y)
+*                   2. result is negative when both inputs are positive, If (+) + (+) != (+)
+*                   3. result is positive when both inputs are negative, If (-) + (-) != (-)
+*                   4. x > Max_Int - y, result would be larger then MAX_INT, if not false. 
 *
-*       * FOR BOTH ADDITION AND SUBTRACTION, I shift to the other function if y was negative. 
+*       b. For subtraction: 
+*             Overflow use cases:
+*                   1. the result is 0, when x != y
+*                   2. result is negative when x is positive but y is negative, If (+) - (-) != (+)
+*                   3. result is positive when x is negative but y is positive, If (-) - (+) != (-)
+*                   4. x > MIN_Int + y, result would be smaller then MIN_INT, if not false. 
 *
-*       - For Multiplication: 
-*             Checking for overflow can come from making sure:
-*                   - The inputs do not equal 0
-*                   - if both are positive number => result will be positive 
-*                   - if one is a negative number => result will be negative
-*       - For division: 
-*             Since the numbers are intergers and not floats, there will be no overflows. Only check would be that y is not 0. 
+*       c. For Multiplication: This is harder since the product is a lot larger then the input values. 
+*           Results can get very large quickly and can be hard to check the overflow value.  
+*               Overflow use cases: 
+*                   1. if both are positive number => result will be positive 
+*                   2. if both are negative number => result will be positive 
+*                   3. if one is a negative number => result will be negative
+*                   4. x does not equal the result divided by y. 
+*       d. For division: 
+*               Overflow use cases:
+*                   1.The only over flow to check of is if x == MIN_Int and y == -1, the result would be MAX_INT+1
 */
 
 #include <stdio.h>
 
 /******Constents, headers for functions, and helper functions.******/
 int MAX_INT = 2147483647;
-
-//So functions can use eachother
-int add(int x, int y);
-int subtract(int x, int y);
-int multiply(int x, int y);
-int divide(int x, int y);
+int MIN_INT = -2147483648;
 
 //make printing errors easier
 void printErrorStatement(char* functionName) {
@@ -44,18 +46,19 @@ void printErrorStatement(char* functionName) {
 }
 /********************************************************************/
 
+/*
+*   Addition function
+*   @param int x and int y
+*   @return result, if no integer overflow, else return Error statement and -1
+*/
 int add(int x, int y) {
-    //Check to make sure y is possitive, if not, send to subtract
-    if (y < 0) {
-        printf("\n\n******Add reroute: second value was negative, going to subtract() ******");
-        y = y * -1;
-        return subtract(x, y);
-    }
-    //Since y is positive the addition will take place
     int result = x + y;
-    //Throw error 
-    if ((result < x) 
-        || (result == 0 && (x != (-y)))) {
+    //Check for overflow
+    if ((result == 0 && (x != (-y))) //Checks for a.1. from above
+        || (x > 0 && y > 0 && result < 0 ) //Checks for a.2. from above
+        || (x < 0 && y < 0 && result > 0 ) //Checks for a.3. from above
+        || (x > MAX_INT - y) //Checks for a.4. from above
+        ) {
             char str[] = "Addition";
             printErrorStatement(str);
             return -1;
@@ -63,19 +66,19 @@ int add(int x, int y) {
     return result;
 }
 
+/*
+*   Subtract function
+*   @param int x and int y
+*   @return result, if no integer overflow, else return Error statement and -1
+*/
 int subtract(int x, int y) {
-    //Check to make sure y is possitive, if not, send to addition
-    if (y < 0) {
-        printf("\n\n******Subtract reroute: second value was negative, going to add() ******");
-        y = y * -1;
-        return add(x,y);
-    }
-
-    //Since y is possitive the subtraction will take place
     int result = x - y;
-    //Throw error 
-    if ((result > x) 
-        || (result == 0 && (x != (-y)))) {
+    //Check for overflow
+    if ((result == 0 && (x != y)) //Checks for b.1. from above
+        || (x > 0 && y < 0 && result < 0) //Checks for b.2. from above
+        || (x < 0 && y < 0 && result > 0) //Checks for b.3. from above
+        || (x < MIN_INT + y) //Checks for b.4. from above
+        ) {
             char str[] = "Subtraction";
             printErrorStatement(str);
             return -1;
@@ -83,26 +86,45 @@ int subtract(int x, int y) {
     return result;
 }
 
+/*
+*   Multiply function
+*   @param int x and int y
+*   @return result, if no integer overflow, else return Error statement and -1
+*/
 int multiply(int x, int y) {
     int result = x * y;
-    if (x == 0 
-        || y == 0 
-        || (x != result / y) 
-        || (x < 0 && y > 0 && result > 0)
-        || (x > 0 && y < 0 && result > 0)
-        || (x > 0 && y > 0 && result < 0)) 
-        {
-        char str[] = "Multiply";
-        printErrorStatement(str);
-        return -1;
+    //Returns 0 if either of the inputs are zero
+    if (x == 0 ||y == 0){
+        return 0;
+    }
+    //Check for overflow cases
+    else if ((x < 0 && y > 0 && result > 0) //Checks for c.1. from above
+        || (x > 0 && y < 0 && result < 0) //Checks for c.2. from above
+        || (x > 0 && y > 0 && result < 0) //Checks for c.3. from above
+        || (x != result / y)   //Checks for c.4. from above
+        ) {
+            char str[] = "Multiply";
+            printErrorStatement(str);
+            return -1;
     }
     return result;
 }
 
+/*
+*   Divide function
+*   @param int x and int y
+*   @return result, if no integer overflow, else return Error statement and -1
+*/
 int divide(int x, int y) {
     int result = x/y;
     if (y == 0) {
         char str[] = "Divide";
+        printErrorStatement(str);
+        return -1;
+    }
+    //Only use case for division
+    if (x == MIN_INT && y == -1) { // Checks for d.1 from above
+        char str[] = "Division";
         printErrorStatement(str);
         return -1;
     }
@@ -111,40 +133,33 @@ int divide(int x, int y) {
 
 int main() {
     printf("\n-----------------Addition------------------------");
-    //Addition w/ positives - Should pass 
+    //Tests add with small inputs - should pass
     int x = 5;
     int y = 15;
     printf("\n%i + %i = %i", x, y, add(x,y));
 
-    //Addition that comes to 0 - Should not overflow
+    //Tests inputs that are inverses - should pass
     x = 0;
     y = 0;
     x = -10;
     y = 10; 
     printf("\n%i + %i = %i", x, y, add(x,y));
-        
-    //Addition w/ negative number - Should reroute to subtract
-    x = 0;
-    y = 0;
-    x = 10;
-    y = -2; 
-    printf("\n%i + %i = %i", x, y, add(x,y));
 
-    //Addition w/ positives - Should have overflow
+    //Tests positive overflow - should fail 
     x = 0;
     y = 0;
     x = 2147483646;
     y = 10; 
     printf("\n%i + %i = %i", x, y, add(x,y));
 
-    //Addition w/ positives large numbers - Should have overflow
+    //Tests negative overflow - should fail
     x = 0;
     y = 0;
-    x = 147483646;
-    y = 2000000002; 
+    x = -147483646;
+    y = -2000000002; 
     printf("\n%i + %i = %i", x, y, add(x,y));
 
-    //Addition that comes to 0 - Should have overflow
+    //Tests result as zero but from overflow - should fail
     x = 0;
     y = 0;
     x = 2147483647;
@@ -155,30 +170,30 @@ int main() {
 
      printf("\n\n-------------------Subtraction----------------------");
 
-    //Subtract w/ positive & positive - should pass
+    //Tests subtract with small inputs - should pass
     int a = 5;
     int b = 15;
     printf("\n%i - %i = %i", a, b, subtract(a,b));
-    
-    //Subtract w/ positive & negative - Should reroute to add
+
+    //Tests inputs that are same - should pass
     a = 0;
     b = 0;
-    a = 5;
-    b = -15;
-    printf("\n%i - %i = %i", a, b, subtract(a,b));
+    a = 10;
+    b = 10; 
+    printf("\n%i + %i = %i", x, y, subtract(a,b));
 
-    //Subtract w/ large negative - Should have overflow
+    //Tests negative overflow - should fail 
     a = 0;
     b = 0;
     a = -2147483648;
     b = 15;
     printf("\n%i - %i = %i", a, b, subtract(a,b));
 
-    //Subtract w/ small negative and large number - Should have overflow
+    //Test positive overflow - should fail
     a = 0;
     b = 0;
-    a = -2;
-    b = 2147483647;
+    a = 2;
+    b = -2147483647;
     printf("\n%i - %i = %i", a, b, subtract(a,b));
 
     /************************************************/
@@ -217,6 +232,22 @@ int main() {
     i = 47000;
     j = 47000;
     printf("\n%i * %i = %i", i, j, multiply(i,j));
+
+    /************************************************/
+
+    printf("\n\n-------------------Divide----------------------");
+
+    //Divide with small numbers - should pass
+    int e = 5;
+    int f = 15;
+    printf("\n%i * %i = %i", i, j, divide(e,f));
+
+    //Divide with use case numbers - should fail 
+    e = 0;
+    f = 0;
+    e = MIN_INT;
+    f = -1;
+    printf("\n%i * %i = %i", i, j, divide(e,f));
 
     printf("\n-----------------------------------------\n");
 

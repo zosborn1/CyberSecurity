@@ -97,7 +97,8 @@ int main() {
     printf("\nPassing test, 5 + 15 = %i", add(x,y));
 
     //Addition w/ positives - Should have overflow
-    int a = 4294967290;
+    //int a = 4294967290;
+    int a = 2147483647;
     int b = 10; 
     printf("\nFailing test, 4294967290 + 10 != %i", add(a,b));
 

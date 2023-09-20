@@ -12,6 +12,10 @@
 *             Checking for overflow can come from making sure:
 *                   - the result isnt 0
 *                   - result is not larger then the first input
+*       - For Multiplication: 
+*             Checking for overflow can come from making sure:
+*                   - the result isnt 0
+*                   - result is not larger then the first input
 */
 
 /*Constents, headers for functions, and helper functions.*/
@@ -39,9 +43,9 @@ int add(int x, int y) {
     }
     //Since y is positive the addition will take place
     int result = x + y;
-    //Throw error when result is less then the inputs. 
+    //Throw error 
     if ((result < x) || (result == 0 && (x != (-y)))) {
-        char str[] = "Addition, one number is too large";
+        char str[] = "Addition";
         printErrorStatement(str);
         return -1;
     }
@@ -69,7 +73,7 @@ int subtract(int x, int y) {
 
 int multiply(int x, int y) {
     int result = x * y;
-    if (x == 0 || y == 0 || x != result / y) {
+    if (x == 0 || y == 0 || (x != result / y)) {
         char str[] = "Multiply";
         printErrorStatement(str);
         return -1;
@@ -153,6 +157,13 @@ int main() {
     b = 0;
     a = -2147483648;
     b = 15;
+    printf("\n%i - %i = %i", a, b, subtract(a,b));
+
+    //Subtract w/ small and large number - Should have overflow
+    a = 0;
+    b = 0;
+    a = 1;
+    b = 2147483647;
     printf("\n%i - %i = %i", a, b, subtract(a,b));
 
     printf("\n-----------------------------------------\n");

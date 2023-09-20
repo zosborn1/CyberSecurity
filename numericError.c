@@ -35,7 +35,7 @@ int add(int x, int y) {
     }
     //Check to see if the number are to large for the check below. 
     if (x > MAX_INT - y || y > MAX_INT - x) {
-        char str[] = "Addition";
+        char str[] = "Addition, both numbers are too large";
         printErrorStatement(str);
         return -1;
     }
@@ -43,7 +43,7 @@ int add(int x, int y) {
     int result = x + y;
     //Throw error when result is less then the inputs. 
     if ((result < x) || (result < y) || (result - x != y) || (result - y != x)) {
-        char str[] = "Addition";
+        char str[] = "Addition, one number is too large";
         printErrorStatement(str);
         return -1;
     }
@@ -97,10 +97,14 @@ int main() {
     printf("\nPassing test, 5 + 15 = %i", add(x,y));
 
     //Addition w/ positives - Should have overflow
-    //int a = 4294967290;
     int a = 2147483646;
     int b = 10; 
     printf("\nFailing test, 2147483646 + 10 != %i", add(a,b));
+
+    //Addition w/ positives - Should have overflow
+    int a = 147483646;
+    int b = 2000000000; 
+    printf("\nFailing test, 147483646 + 2000000000 != %i", add(a,b));
 
     printf("\n-----------------------------------------\n");
 

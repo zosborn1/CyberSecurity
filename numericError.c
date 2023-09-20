@@ -23,13 +23,14 @@ int add(int x, int y) {
     }
     //Check to see if the number are to large for the check below. 
     if (x > MAX_INT - y || y > MAX_INT - x) {
-
+        char str[] = "Addition";
+        printErrorStatement(str);
+        return -1;
     }
     //Since y is positive the addition will take place
     int result = x + y;
     //Throw error when result is less then the inputs. 
     if ((result < x) || (result < y) || (result - x != y) || (result - y != x)) {
-        //printf("\n\n******Error: Overflow with addition******");
         char str[] = "Addition";
         printErrorStatement(str);
         return -1;
@@ -46,7 +47,8 @@ int subtract(int x, int y) {
     int result = x - y;
     //Throw error 
     if ((result > x) || (result < -4294967296)) {
-        printf("\n\n******Error: Overflow with subtration******");
+        char str[] = "Subtraction";
+        printErrorStatement(str);
         return -1;
     }
     return result;
@@ -55,7 +57,8 @@ int subtract(int x, int y) {
 int multiply(int x, int y) {
     int result = x * y;
     if (x == 0 || y == 0 || x != result / y) {
-        printf("\n\n******Error: Overflow with subtration******");
+        char str[] = "Multiply";
+        printErrorStatement(str);
         return -1;
     }
     return result;
@@ -64,7 +67,8 @@ int multiply(int x, int y) {
 int divide(int x, int y) {
     int result = x/y;
     if (y == 0) {
-        printf("\n\n******Error: Overflow with subtration******");
+        char str[] = "Divide";
+        printErrorStatement(str);
         return -1;
     }
     //Check to make sure y is not a decimal, with decimals the end result could overflow
@@ -84,6 +88,8 @@ int main() {
     int a = 4294967290;
     int b = 10; 
     printf("\nFailing test, 4294967290 + 10 != %i", add(a,b));
+
+    printf("\n-----------------------------------------\n");
 
     /************************************************/
 }

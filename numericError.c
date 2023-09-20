@@ -129,6 +129,13 @@ int main() {
     b = -15;
     printf("\nPassing test, 5 - (-15) = %i", subtract(a,b));
 
+    //Subtract w/ large negative - Should have overflow
+    a = 0;
+    b = 0;
+    a = -2147483646;
+    b = 15;
+    printf("\nPassing test, -2147483646 - 15 = %i", subtract(a,b));
+
     printf("\n-----------------------------------------\n");
 
      /************************************************/
